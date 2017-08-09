@@ -3,7 +3,7 @@ package com.example.xpweather.util;
 import android.text.TextUtils;
 
 import com.example.xpweather.dbModel.CityModel;
-import com.example.xpweather.dbModel.CountyModel;
+import com.example.xpweather.dbModel.CountryModel;
 import com.example.xpweather.dbModel.ProvinceModel;
 
 import org.json.JSONArray;
@@ -77,7 +77,7 @@ public class Utility {
                 JSONArray allCountry = new JSONArray(response);
                 for (int i = 0;i<allCountry.length();i++){
                     JSONObject cityObject = allCountry.getJSONObject(i);
-                    CountyModel country = new CountyModel();
+                    CountryModel country = new CountryModel();
                     country.setCityId(cityId);
                     country.setCountyName(cityObject.getString("name"));
                     country.setId(cityObject.getInt("id"));
