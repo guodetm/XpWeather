@@ -36,4 +36,6 @@ dependencies {
     compile 'com.lzy.net:okrx:+'        //版本号使用 + 可以自动引用最新版
     compile 'com.lzy.net:okserver:+'    //版本号使用 + 可以自动引用最新版
 
+
+    compile 'org.jetbrains:annotations-java5:15.0'
 }

@@ -6,6 +6,6 @@
     <list>
         <mapping class="com.example.xpweather.dbModel.CityModel" />
         <mapping class="com.example.xpweather.dbModel.ProvinceModel" />
-        <mapping class="com.example.xpweather.dbModel.CountyModel" />
+        <mapping class="com.example.xpweather.dbModel.CountryModel" />
     </list>
 </litepal>

@@ -7,7 +7,7 @@ import org.litepal.crud.DataSupport;
  * 县级Model类
  */
 
-public class CountyModel extends DataSupport{
+public class CountryModel extends DataSupport{
     private int id;
     private String countyName;
     private String weatherId;
