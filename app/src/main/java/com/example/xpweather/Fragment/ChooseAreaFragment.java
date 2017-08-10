@@ -2,6 +2,7 @@ package com.example.xpweather.Fragment;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 
 import com.example.xpweather.R;
+import com.example.xpweather.WeatherActivity;
 import com.example.xpweather.dbModel.CityModel;
 import com.example.xpweather.dbModel.CountryModel;
 import com.example.xpweather.dbModel.ProvinceModel;
@@ -29,6 +31,8 @@ import org.litepal.crud.DataSupport;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.security.auth.login.LoginException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -96,6 +100,14 @@ public class ChooseAreaFragment extends Fragment {
                 } else if (currentLevel == LEVEL_CITY) {
                     selectedCity = cityList.get(position);
                     queryCounties();
+                }else if (currentLevel == LEVEL_COUNTRY){
+                    String weatherId = countryList.get(position).getWeatherId();
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(),WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    Log.e(TAG,"前往weatherActivity");
+                    startActivity(intent);
+//                    getActivity().finish();
                 }
             }
         });
@@ -120,6 +132,7 @@ public class ChooseAreaFragment extends Fragment {
         backBtn.setVisibility(View.GONE);
         provinceList = DataSupport.findAll(ProvinceModel.class);
         if (provinceList.size() > 0) {
+            Log.e(TAG,"在数据库中有省级数据");
             dataList.clear();
             for (ProvinceModel province : provinceList) {
                 dataList.add(province.getProvinceName());
@@ -128,6 +141,7 @@ public class ChooseAreaFragment extends Fragment {
             mListView.setSelection(0);
             currentLevel = LEVEL_PROVINCE;
         } else {
+            Log.e(TAG,"在数据库中没有省级数据");
             String address = "http://guolin.tech/api/china";
             queryFromServer(address, "province");
         }
