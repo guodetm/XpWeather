@@ -1,11 +1,12 @@
-package com.kingeid.campusguardian.utils;
+package com.example.xpweather.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
-import com.kingeid.campusguardian.App;
-import com.kingeid.campusguardian.R;
+import com.example.xpweather.APP;
+import com.example.xpweather.R;
+
 
 /**
  * Created by joker on 2017/5/5.
@@ -15,7 +16,7 @@ public class SPUtil {
     private final SharedPreferences mPreferences;
 
     private SPUtil() {
-        Context context = App.getAppContext();
+        Context context = APP.getAppContext();
         String spName = context.getResources().getString(R.string.app_name);
         mPreferences = context.getSharedPreferences(spName, Context.MODE_PRIVATE);
     }
@@ -23,6 +24,7 @@ public class SPUtil {
     public static SPUtil getInstance() {
         return SingletonHolder.instance;
     }
+
 
     private static boolean isSpace(final String s) {
         if (s == null) return true;

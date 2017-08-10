@@ -1,9 +1,10 @@
-package com.kingeid.campusguardian.utils;
+package com.example.xpweather.util;
 
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.kingeid.campusguardian.App;
+import com.example.xpweather.APP;
+
 
 /**
  * Created by joker on 2017/7/12.
@@ -24,7 +25,7 @@ public class ToastUtil {
             return;
         }
         if (toast == null) {
-            toast = Toast.makeText(App.getAppContext(), content, duration);
+            toast = Toast.makeText(APP.getAppContext(), content, duration);
         } else {
             toast.setText(content);
         }
