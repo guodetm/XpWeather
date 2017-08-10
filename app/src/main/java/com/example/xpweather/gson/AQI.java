@@ -5,4 +5,9 @@ package com.example.xpweather.gson;
  */
 
 public class AQI {
+    public AQICITY city;
+    public class AQICITY{
+        public String aqi;
+        public String pm25;
+    }
 }
