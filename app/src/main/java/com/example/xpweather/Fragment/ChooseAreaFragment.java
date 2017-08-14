@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.xpweather.MainActivity;
 import com.example.xpweather.R;
 import com.example.xpweather.WeatherActivity;
 import com.example.xpweather.dbModel.CityModel;
@@ -102,12 +103,19 @@ public class ChooseAreaFragment extends Fragment {
                     queryCounties();
                 }else if (currentLevel == LEVEL_COUNTRY){
                     String weatherId = countryList.get(position).getWeatherId();
-                    Intent intent = new Intent();
-                    intent.setClass(getActivity(),WeatherActivity.class);
-                    intent.putExtra("weather_id",weatherId);
-                    Log.e(TAG,"前往weatherActivity");
-                    startActivity(intent);
-//                    getActivity().finish();
+                    if (getActivity() instanceof MainActivity){
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(),WeatherActivity.class);
+                        intent.putExtra("weather_id",weatherId);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }else if (getActivity() instanceof WeatherActivity){
+                        WeatherActivity activity = (WeatherActivity) getActivity();
+                        activity.drawerLayout.closeDrawers();
+                        activity.swipeRefresh.setRefreshing(true);
+                        activity.requestWeather(weatherId);
+                    }
+
                 }
             }
         });
